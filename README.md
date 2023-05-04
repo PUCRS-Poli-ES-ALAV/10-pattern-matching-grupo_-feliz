@@ -5,7 +5,7 @@
 
 Dadas duas strings, s1 e s2, verificar a posição da primeira ocorrência de se s2 em s1, se existir.
 
-Assim, se s1 = "ABCDCBDCBDACBDABDCBADF" e s1 = "ADF" o retorno seria 19.
+Assim, se s1 = "ABCDCBDCBDACBDABDCBADF" e s2 = "ADF" o retorno seria 19.
 
 
 
