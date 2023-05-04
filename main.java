@@ -1,7 +1,7 @@
 class Main {
     public static void main(String[] args) {
-        System.out.println(search("asdahdfjhsjdfhuisatusvf3fdgfgdfgxzcvgzdfkszfgsf3", "f3fdgfgdfg"));
-        System.out.println(createString(500000));
+        // System.out.println(search("asdahdfjhsjdfhuisatusvf3fdgfgdfgxzcvgzdfkszfgsf3", "f3fdgfgdfg"));
+        System.out.println(search(createString(400000) + "asw4" + createString(100000), "asw4"));
         
     }
 
