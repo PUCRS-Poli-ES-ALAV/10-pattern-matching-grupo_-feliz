@@ -11,6 +11,9 @@ class Main {
         String search = "aab";
         System.out.println(search(txt, search));
         System.out.println(search2(txt, search));
+
+        // System.out.println(search(txt, search));
+        System.out.println(KMPSearch(search, txt));
        
     }
 
@@ -93,7 +96,7 @@ class Main {
         }
     }
 
-    public static void KMPSearch(String pat, String txt){
+    public static int KMPSearch(String pat, String txt){
         int M = pat.length();
         int N = txt.length();
 
@@ -112,7 +115,8 @@ class Main {
 			if (j == M) { 
 				System.out.println("Found pattern "
 								+ "at index " + (i - j)); 
-				j = lps[j - 1]; 
+                                // j = lps[j - 1]; 
+                                return i-j;
 			} 
 
 			// mismatch após j matches 
@@ -125,6 +129,7 @@ class Main {
 					i = i + 1; 
 			} 
 		} 
+        return -1;
 
     }
 
