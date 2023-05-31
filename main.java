@@ -9,11 +9,12 @@ class Main {
         // String search = "asw4";
         String txt = "aaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         String search = "aab";
+        int count = 0;
         System.out.println(search(txt, search));
         System.out.println(search2(txt, search));
 
         // System.out.println(search(txt, search));
-        System.out.println(KMPSearch(search, txt));
+        System.out.println(KMPSearch(search, txt, count));
        
     }
 
@@ -96,25 +97,28 @@ class Main {
         }
     }
 
-    public static int KMPSearch(String pat, String txt){
+    public static int KMPSearch(String pat, String txt, int count){
+        
         int M = pat.length();
         int N = txt.length();
-
+        
         int lps[] = new int [M];
         int j = 0;
 
         // Calcula lps[] 
-		computeLPSArray(pat, M, lps); 
+		computeLPSArray(pat, M, lps,count); 
 
 		int i = 0; // index for txt[] 
 		while (i < N) { 
-			if (pat.charAt(j) == txt.charAt(i)) { 
+            count++;
+			if (pat.charAt(j) == txt.charAt(i)) {
 				j++; 
 				i++; 
 			} 
 			if (j == M) { 
-				System.out.println("Found pattern "
-								+ "at index " + (i - j)); 
+                System.out.println("iteracoes: "+ count);
+				System.out.println("padrão encontrado "
+								+ "com indice " + (i - j)); 
                                 // j = lps[j - 1]; 
                                 return i-j;
 			} 
@@ -125,23 +129,28 @@ class Main {
 				// não é necesssário, eles combinarão 
 				if (j != 0) 
 					j = lps[j - 1]; 
+                    //System.out.println("iteracoes: "+ count);
 				else
 					i = i + 1; 
+                    //System.out.println("iteracoes: "+ count);
 			} 
 		} 
+        System.out.println("iteracoes: "+ count);
         return -1;
-
+        
     }
 
-    public static void computeLPSArray(String pat, int M, int lps[]) 
+    public static void computeLPSArray(String pat, int M, int lps[], int count) 
 	{ 
 		// tamanho do maior prefixo sufixo anterior 
 		int len = 0; 
 		int i = 1; 
 		lps[0] = 0; // lps[0] is always 0 
 
+
 		// loop calcula lps[i] for i = 1 to M-1 
-		while (i < M) { 
+		while (i < M) {
+            count++; 
 			if (pat.charAt(i) == pat.charAt(len)) { 
 				len++; 
 				lps[i] = len; 
@@ -151,11 +160,13 @@ class Main {
 			{ 
 				if (len != 0) { 
 					len = lps[len - 1]; 
+                    //System.out.println("iteracoes: "+ count);
 				} 
 				else // if (len == 0) 
 				{ 
 					lps[i] = len; 
 					i++; 
+                    //System.out.println("iteracoes: "+ count);
 				} 
 			} 
 		} 
